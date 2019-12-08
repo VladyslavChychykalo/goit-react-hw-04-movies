@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
 import CastMovies from '../components/CastMovies/CastMovies';
 import * as moviesAPI from '../services/movies-api';
-
-const getIdFromProps = props => props.match.params.id;
-
-const mapper = cast => {
-  return cast.map(({ profile_path: link, ...props }) => ({
-    link,
-    ...props,
-  }));
-};
+import profileMapper from '../utils/profileMapper';
+import getId from '../utils/getIdFromProps';
 
 class Cast extends Component {
   state = { cast: [] };
 
   componentDidMount() {
-    const id = getIdFromProps(this.props);
+    const id = getId(this.props);
     moviesAPI.fetchCast(id).then(data => this.setState({ cast: data.cast }));
   }
 
   render() {
     const { cast } = this.state;
-    const mapperFn = mapper(cast);
+    const mapperFn = profileMapper(cast);
     return (
       <div>
         <CastMovies cast={mapperFn} />

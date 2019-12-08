@@ -5,15 +5,8 @@ import Movie from '../components/Movie/Movie';
 import Cast from './Cast';
 import Review from './Review';
 import * as moviesAPI from '../services/movies-api';
-
-const getIdFromProps = props => props.match.params.id;
-
-const mapper = movie => {
-  return movie.map(({ poster_path: link, ...props }) => ({
-    link,
-    ...props,
-  }));
-};
+import getId from '../utils/getIdFromProps';
+import posterMapper from '../utils/posterMapper';
 
 class MovieDetailPage extends Component {
   state = { movie: [] };
@@ -24,7 +17,7 @@ class MovieDetailPage extends Component {
   };
 
   componentDidMount() {
-    const id = getIdFromProps(this.props);
+    const id = getId(this.props);
     moviesAPI
       .fetchMovieInfo(id)
       .then(movie => this.setState({ movie: [{ ...movie }] }));
@@ -38,7 +31,7 @@ class MovieDetailPage extends Component {
 
   render() {
     const { movie } = this.state;
-    const movieItem = mapper(movie);
+    const movieItem = posterMapper(movie);
     return (
       <div>
         {movie && <Movie onClick={this.handleGoBack} movies={movieItem} />}

@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import * as moviesAPI from '../services/movies-api';
 import ReviewMovies from '../components/ReviewMovies/ReviewMovies';
-
-const getIdFromProps = props => props.match.params.id;
+import getId from '../utils/getIdFromProps';
 
 class Review extends Component {
   state = { results: [] };
 
   componentDidMount() {
-    const id = getIdFromProps(this.props);
+    const id = getId(this.props);
     moviesAPI
       .fetchReviews(id)
       .then(data => this.setState({ results: data.data.results }));
