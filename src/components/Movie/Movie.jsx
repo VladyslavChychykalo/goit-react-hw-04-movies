@@ -38,38 +38,6 @@ const Movie = ({ onClick, movies }) => (
       </div>
     ))}
   </div>
-
-  // <div>
-  // <button type="button" onClick={onClick}>
-  //   Go back
-  // </button>
-  // <div>
-  //   <img
-  //     src={
-  //       movie.poster_path !== null
-  //         ? `http://image.tmdb.org/t/p/original${movie.poster_path}`
-  //         : 'http://image.tmdb.org/t/p/original/zUqyn3aQXTzeP1n8yd8Udt1twYA.jpg'
-  //     }
-  //     alt=""
-  //     style={{ width: '400px', height: '500px' }}
-  //   />
-  //   <h1>{movie.title}</h1>
-  //   <p>{movie.overview}</p>
-  //   {movie.genres.map(name => (
-  //     <p key={name.id}>{name.name}</p>
-  //   ))}
-  // </div>
-  // <div>
-  //   <ul>
-  //     <li>
-  //       <Link to={`/movies/${movie.id}/cast`}>Cast</Link>
-  //     </li>
-  //     <li>
-  //       <Link to={`/movies/${movie.id}/reviews`}>Review</Link>
-  //     </li>
-  //   </ul>
-  // </div>
-  // </div>
 );
 
 Movie.propTypes = {
